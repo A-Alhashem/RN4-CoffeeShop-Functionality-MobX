@@ -21,7 +21,13 @@ class CoffeeCart extends Component {
     return (
       <List>
         {content}
-        <Button full danger>
+        <Button
+          full
+          danger
+          onPress={() =>
+            CartStore.checkOutCart(alert("Thank you for shopping with us!"))
+          }
+        >
           <Text>Checkout</Text>
         </Button>
       </List>
