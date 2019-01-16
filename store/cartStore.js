@@ -1,4 +1,4 @@
-import { decorate, observable } from "mobx";
+import { decorate, observable, computed } from "mobx";
 
 class CartStore {
   constructor() {
@@ -25,10 +25,17 @@ class CartStore {
   checkOutCart() {
     this.items = [];
   }
+
+  get totalQuantity() {
+    let totalAmount = 0;
+    this.items.forEach(item => (totalAmount += item.quantity));
+    return totalAmount;
+  }
 }
 
 decorate(CartStore, {
-  items: observable
+  items: observable,
+  totalQuantity: computed
 });
 
 let cartStore = new CartStore();

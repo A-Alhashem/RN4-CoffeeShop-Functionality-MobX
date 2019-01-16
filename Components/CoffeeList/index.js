@@ -7,28 +7,18 @@ import { List, Content, Button, Text, Icon } from "native-base";
 // Store
 import CoffeeStore from "../../store/coffeeStore";
 
+// React Navigation
+import { withNavigation } from "react-navigation";
+
 // Component
 import CoffeeItem from "./CoffeeItem";
+import NewButtons from "../../Components/NewButtons";
 
 class CoffeeList extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: "Coffee List",
     headerLeft: null,
-    headerRight: (
-      <Button
-        light
-        transparent
-        onPress={() => navigation.navigate("CoffeeCart")}
-      >
-        <Text>
-          <Icon
-            type="FontAwesome"
-            name="coffee"
-            style={{ color: "white", fontSize: 15 }}
-          />
-        </Text>
-      </Button>
-    )
+    headerRight: <NewButtons />
   });
   render() {
     const coffeeshops = CoffeeStore.coffeeshops;
@@ -46,4 +36,4 @@ class CoffeeList extends Component {
   }
 }
 
-export default observer(CoffeeList);
+export default withNavigation(observer(CoffeeList));

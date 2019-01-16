@@ -16,13 +16,18 @@ import {
   Icon
 } from "native-base";
 
+// React Navigation
+import { withNavigation } from "react-navigation";
+
 // Style
 import styles from "./styles";
 
 //Store
-import CoffeeStore from "../../store/coffeeStore";
-
 import CartStore from "../../store/cartStore";
+
+// Components
+
+import NewButtons from "../../Components/NewButtons";
 
 class CoffeeDetail extends Component {
   constructor(props) {
@@ -33,23 +38,10 @@ class CoffeeDetail extends Component {
       quantity: 1
     };
   }
+
   static navigationOptions = ({ navigation }) => ({
     title: navigation.getParam("shop", {}).name,
-    headerRight: (
-      <Button
-        light
-        transparent
-        onPress={() => navigation.navigate("CoffeeCart")}
-      >
-        <Text>
-          <Icon
-            type="FontAwesome"
-            name="coffee"
-            style={{ color: "white", fontSize: 15 }}
-          />
-        </Text>
-      </Button>
-    )
+    headerRight: <NewButtons />
   });
   changeDrink(value) {
     this.setState({
@@ -122,4 +114,4 @@ class CoffeeDetail extends Component {
   }
 }
 
-export default observer(CoffeeDetail);
+export default withNavigation(observer(CoffeeDetail));
